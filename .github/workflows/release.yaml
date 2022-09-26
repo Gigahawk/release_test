@@ -31,7 +31,7 @@ jobs:
           path: files
 
   release:
-    #if: startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/')
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -52,11 +52,10 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
 
-      #- name: Release
-      #  uses: softprops/action-gh-release@v1
-      #  with:
-      #    files: |
-      #      files/*
-      #      README.md
-      #    name: ${{ github.ref }}_test
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *
+          name: ${{ github.ref }}_test
 
