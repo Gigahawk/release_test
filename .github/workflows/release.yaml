@@ -32,7 +32,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            files
+            files/*
             README.md
           name: ${{ github.ref }}_test
 
