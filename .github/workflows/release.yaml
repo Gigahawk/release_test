@@ -27,12 +27,27 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Upload files
+        uses: actions/upload-artifact@v3
         with:
-          files: |
-            files/*
-            README.md
-          name: ${{ github.ref }}_test
+          name: my-files
+          path: files
+
+
+      - name: Download files
+        uses: actions/download-artifact@v3
+        with:
+          name: my-files
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      #- name: Release
+      #  uses: softprops/action-gh-release@v1
+      #  if: startsWith(github.ref, 'refs/tags/')
+      #  with:
+      #    files: |
+      #      files/*
+      #      README.md
+      #    name: ${{ github.ref }}_test
 
